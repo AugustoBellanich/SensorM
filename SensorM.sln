@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorM", "SensorM\SensorM.csproj", "{84910A12-6C89-4496-AEE2-15C3905CF65E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84910A12-6C89-4496-AEE2-15C3905CF65E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {456E170B-6901-4F3D-A4A2-C45CDBC7A364}
+	EndGlobalSection
+EndGlobal
