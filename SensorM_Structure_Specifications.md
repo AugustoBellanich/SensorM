@@ -92,4 +92,4 @@ Lista de referencias y recursos adicionales.
 
 | Versión | Fecha       | Descripción del Cambio | Autor |
 |---------|-------------|------------------------|-------|
-| 1.0     | DD/MM/AAAA  | Creación del documento | _Nombre_ |
+| 1.0     | 10/09/2023  | Creación del documento | Augusto Bellanich |
