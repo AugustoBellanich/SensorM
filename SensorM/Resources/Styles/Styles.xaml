@@ -402,4 +402,30 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <!-- Estilos para el tema claro -->
+    <Style x:Key="LightThemePage" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}" />
+    </Style>
+
+    <Style x:Key="LightThemeLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource LightTextColor}" />
+    </Style>
+
+    <!-- Estilos para el tema oscuro -->
+    <Style x:Key="DarkThemePage" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkBackgroundColor}" />
+    </Style>
+
+    <Style x:Key="DarkThemeLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource DarkTextColor}" />
+    </Style>
+
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+
+
 </ResourceDictionary>

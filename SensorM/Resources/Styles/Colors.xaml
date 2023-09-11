@@ -4,9 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -17,9 +15,6 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
@@ -40,5 +35,34 @@
     <Color x:Key="Blue100Accent">#3E8EED</Color>
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+    <!-- Colores del logo -->
+    <Color x:Key="Primary">#0088ce</Color>
+    <Color x:Key="Secondary">#e00a08</Color>
+    <Color x:Key="TextAndDetails">#3F3F3F</Color>
+
+    <!-- Colores para el tema claro -->
+    <Color x:Key="LightBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="LightTextColor">#000000</Color>
+
+    <!-- Colores para el tema oscuro -->
+    <Color x:Key="DarkBackgroundColor">#000000</Color>
+    <Color x:Key="DarkTextColor">#FFFFFF</Color>
+
+    <!-- Colores actuales que cambiarán en tiempo de ejecución -->
+    <Color x:Key="CurrentBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="CurrentTextColor">#000000</Color>
+
+    <!-- Definición de los pinceles -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TextAndDetailsBrush" Color="{StaticResource TextAndDetails}"/>
+    <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackgroundColor}"/>
+    <SolidColorBrush x:Key="LightTextBrush" Color="{StaticResource LightTextColor}"/>
+    <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
+    <SolidColorBrush x:Key="DarkTextBrush" Color="{StaticResource DarkTextColor}"/>
+    <SolidColorBrush x:Key="CurrentBackgroundBrush" Color="{StaticResource CurrentBackgroundColor}"/>
+    <SolidColorBrush x:Key="CurrentTextBrush" Color="{StaticResource CurrentTextColor}"/>
+
 
 </ResourceDictionary>

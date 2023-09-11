@@ -52,4 +52,18 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controls\" />
+	  <Folder Include="Assets\" />
+	  <Folder Include="Helpers\" />
+	  <Folder Include="Database\" />
+	  <Folder Include="Tests\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\InicioPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
