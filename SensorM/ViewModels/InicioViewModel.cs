@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
-using SensorM.Interface;
-using SensorM.Models;
+using SensorM.Interfaces;
+using SQLiteDatabase.Models;
 using SensorM.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

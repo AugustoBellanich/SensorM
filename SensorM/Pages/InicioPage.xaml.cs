@@ -1,8 +1,8 @@
 using Microsoft.Maui.Controls;
 using SensorM.ViewModels;
 using SensorM.Services;
-using SensorM.Interface;
-using SensorM.Models;
+using SensorM.Interfaces;
+using SQLiteDatabase.Models;
 
 namespace SensorM.Pages
 {

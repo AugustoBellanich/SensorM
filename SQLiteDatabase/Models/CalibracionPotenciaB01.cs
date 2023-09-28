@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SensorM.Models
+namespace SQLiteDatabase.Models
 {
     internal class CalibracionPotenciaB01: CalibracionBaseB01
     {

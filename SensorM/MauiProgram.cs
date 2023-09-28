@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using SensorM.Interface;
+using SensorM.Interfaces;
 using SensorM.Services;
 using SensorM.ViewModels;
+using SQLiteDatabase.Interfaces;
+using SQLiteDatabase.Services;
 
 namespace SensorM
 {
@@ -17,7 +19,10 @@ namespace SensorM
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            
+
+            // Registro de servicios de la biblioteca de clases
+            builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

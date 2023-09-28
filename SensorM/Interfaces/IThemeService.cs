@@ -1,6 +1,6 @@
 ﻿using SensorM.Services;
 
-namespace SensorM.Interface
+namespace SensorM.Interfaces
 {
     public interface IThemeService
     {

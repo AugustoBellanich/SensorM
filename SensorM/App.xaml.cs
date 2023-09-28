@@ -1,4 +1,4 @@
-﻿using SensorM.Interface;
+﻿using SensorM.Interfaces;
 using SensorM.Pages;
 using SensorM.ViewModels;
 using Microsoft.Maui;
