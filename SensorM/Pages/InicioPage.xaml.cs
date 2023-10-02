@@ -3,10 +3,11 @@ using SensorM.ViewModels;
 using SensorM.Services;
 using SensorM.Interfaces;
 using SQLiteDatabase.Models;
+using UraniumUI.Pages;
 
 namespace SensorM.Pages
 {
-    public partial class InicioPage : ContentPage
+    public partial class InicioPage : UraniumContentPage
     {
         private readonly IThemeService _themeService;
         private readonly InicioViewModel _viewModel;
