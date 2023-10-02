@@ -2,48 +2,73 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorM.Pages.InicioPage"
-             Title="Inicio">
-    <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+             Title="Inicio"
+             BackgroundColor="White">
 
-            <StackLayout Grid.Row="0" Orientation="Horizontal" Padding="10">
-                <Label Text="Modo oscuro" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding IsDarkMode}" Toggled="OnThemeToggled" VerticalOptions="Center"/>
-            </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <Button Text="Buscar Dispositivos" 
-                    Grid.Row="1" 
-                    Style="{StaticResource PrimaryButtonStyle}" 
-                    Command="{Binding BuscarDispositivosCommand}"/>
+        <!-- Barra Superior -->
+        <Grid Grid.Row="0" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <CollectionView Grid.Row="2" 
-                            ItemsSource="{Binding Dispositivos}" 
-                            BackgroundColor="{DynamicResource CurrentBackgroundColor}" 
-                            SelectionMode="Single" 
-                            SelectionChanged="OnSelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10" 
-                                     Margin="0,5" 
-                                     Orientation="Horizontal" 
-                                     BackgroundColor="{DynamicResource CardBackgroundColor}">
-                            <Label Text="{Binding Nombre}" 
-                                   Style="{StaticResource BaseLabelStyle}" 
-                                   HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Tipo}" 
-                                   Style="{StaticResource StatusLabelStyle}" 
-                                   HorizontalOptions="EndAndExpand"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <!-- Botón de Navegación Lateral -->
+            <Image Grid.Column="0" Source="nav_icon.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!-- Logo del Centro -->
+            <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="75" WidthRequest="180"/>
+
+            <!-- Botón de Configuración -->
+            <Image Grid.Column="2" Source="settings_icon.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingsCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
-    </ContentPage.Content>
+
+        <!-- Contenido Central - Tarjetas de Dispositivos -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Dispositivos}" BackgroundColor="White">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Estructura de la Tarjeta de Dispositivo -->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Barra Inferior -->
+        <Grid Grid.Row="2" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Botón Izquierdo -->
+            <Button Grid.Column="0" Text="Botón 1" Command="{Binding Button1Command}"/>
+
+            <!-- Botón Central para Panel de Dispositivos -->
+            <Image Grid.Column="1" Source="icono_sensor.png" Aspect="AspectFit" HeightRequest="60" WidthRequest="60">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowDevicesPanelCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!-- Botón Derecho -->
+            <Button Grid.Column="2" Text="Botón 2" Command="{Binding Button2Command}"/>
+        </Grid>
+    </Grid>
 </ContentPage>
 
-
+    

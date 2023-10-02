@@ -23,9 +23,7 @@ namespace SensorM
             // Registro de servicios de la biblioteca de clases
             builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
 
-#if DEBUG
             builder.Logging.AddDebug();
-#endif
 
             builder.Services.AddSingleton<IThemeService, ThemeService>();
             builder.Services.AddTransient<InicioViewModel>();

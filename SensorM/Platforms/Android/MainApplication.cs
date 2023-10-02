@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
+using SensorM.Interfaces;
+using SensorM.Platforms.Android;
 
 namespace SensorM
 {
@@ -12,5 +14,13 @@ namespace SensorM
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+
+        // Registrar el Servicio de Bluetooth
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            DependencyService.Register<IBluetoothService, AndroidBluetoothService>();
+        }
     }
 }

@@ -8,10 +8,17 @@ namespace SensorM.Interfaces
 {
     public interface IBluetoothService
     {
-        Task<IEnumerable<DispositivoBluetooth>> BuscarDispositivosAsync();
-        Task ConectarAsync(DispositivoBluetooth dispositivo);
-        Task EnviarDatosAsync(byte[] datos);
-        Task<byte[]> RecibirDatosAsync();
+        // Buscar dispositivos, devuelve una lista de los dispositivos encontrados
+        Task<IEnumerable<string>> BuscarDispositivosAsync();
+
+        // Conectar a un dispositivo, devuelve true si se conecto correctamente
+        Task<bool> ConectarAsync(string deviceName);
+
+        // Enviar datos al dispositivo
+        Task EnviarDatosAsync(string data);
+
+        // Recibir datos del dispositivo
+        Task<string> RecibirDatosAsync();
     }
 
 }
