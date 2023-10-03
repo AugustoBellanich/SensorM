@@ -10,17 +10,13 @@ namespace SensorM
 {
     public partial class App : Application
     {
-        public App(IThemeService themeService, InicioViewModel inicioViewModel)
+        public App(IThemeService themeService, InicioViewModel inicioViewModel, INavigationService navigationService)
         {
             InitializeComponent();
 
-            // Crea una instancia de InicioPage
-            var page = new InicioPage(themeService, inicioViewModel);
-
-            // Establece la página raíz de la aplicación
-            MainPage = new NavigationPage(page);
+            var inicioPage = new InicioPage(themeService, inicioViewModel, navigationService);
+            MainPage = new NavigationPage(inicioPage);
         }
-
 
 
         protected override void OnStart()

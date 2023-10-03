@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<uranium:UraniumContentPage 
+<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-    x:Class="SensorM.Pages.InicioPage"
-    Title="Inicio"
-    BackgroundColor="White">
+    x:Class="SensorM.Pages.InicioPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,6 +13,7 @@
 
         <!-- Barra Superior -->
         <Grid Grid.Row="0" Padding="10">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -24,42 +21,16 @@
             </Grid.ColumnDefinitions>
 
             <!-- Botón de Navegación Lateral -->
-            <Button Grid.Column="0" Command="{Binding NavCommand}" />
+            <Button Text="Menu" Grid.Column="0" Command="{Binding NavCommand}"/>
 
             <!-- Logo del Centro -->
-            <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="75" WidthRequest="180"/>
+            <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="50" Margin="10"/>
 
-            <!-- Botón de Configuración -->
-            <Button Grid.Column="2" Command="{Binding SettingsCommand}" />
+            <!-- Botón de conexión bluetooth -->
+            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding BluetoothCommand}"/>
+            
         </Grid>
 
-        <!-- Contenido Central - Tarjetas de Dispositivos -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Dispositivos}" BackgroundColor="White">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame StyleClass="PrimaryContainer">
-                        <Label Text="Dispositivo B01001"/>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <!-- Barra Inferior -->
-        <Grid Grid.Row="2" Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Botón Izquierdo -->
-            <Button Grid.Column="0" Text="Botón 1" Command="{Binding Button1Command}"/>
-
-            <!-- Botón Central para Panel de Dispositivos -->
-            <Image Grid.Column="1" Source="icono_sensor.png" Aspect="AspectFit" HeightRequest="60" WidthRequest="60"/>
-
-            <!-- Botón Derecho -->
-            <Button Grid.Column="2" Text="Botón 2" Command="{Binding Button2Command}"/>
-        </Grid>
     </Grid>
-</uranium:UraniumContentPage>
+    
+</ContentPage>

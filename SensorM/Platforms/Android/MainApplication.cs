@@ -20,7 +20,8 @@ namespace SensorM
         public override void OnCreate()
         {
             base.OnCreate();
-            DependencyService.Register<IBluetoothService, AndroidBluetoothService>();
+
+            DependencyService.Register<IBluetoothService, AndroidBluetoothService>(); // Agregar esta línea para registrar la implementación en el contenedor de dependencias
         }
     }
 }

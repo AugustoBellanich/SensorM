@@ -4,6 +4,7 @@ using SQLiteDatabase.Models;
 using SensorM.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using SensorM.Pages;
 
 namespace SensorM.ViewModels
 {
@@ -12,12 +13,18 @@ namespace SensorM.ViewModels
         private readonly IThemeService _themeService;
         private bool _isDarkMode;
 
-        public InicioViewModel(IThemeService themeService)
+        private readonly INavigationService _navigationService; // Agregado para gestionar la navegación
+
+        public ICommand BluetoothCommand { get; }
+        public ObservableCollection<Dispositivo> Dispositivos { get; } = new ObservableCollection<Dispositivo>();
+
+        public InicioViewModel(IThemeService themeService, INavigationService navigationService)
         {
             _themeService = themeService;
-            IsDarkMode = _themeService.CurrentTheme == Theme.Dark;
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
-            BuscarDispositivosCommand = new Command(OnBuscarDispositivos);
+            IsDarkMode = _themeService.CurrentTheme == Theme.Dark;
+            BluetoothCommand = new Command(async () => await OnBluetoothPressed());
         }
 
         public bool IsDarkMode
@@ -29,13 +36,32 @@ namespace SensorM.ViewModels
             }
         }
 
-        public ObservableCollection<Dispositivo> Dispositivos { get; } = new ObservableCollection<Dispositivo>();
-        public ICommand BuscarDispositivosCommand { get; }
-        private void OnBuscarDispositivos()
+        private async Task OnBluetoothPressed()
         {
-            // Aquí es donde colocarías tu lógica para buscar dispositivos
-            // Por ejemplo, podrías iniciar una búsqueda de dispositivos Bluetooth
-            // y luego agregarlos a la lista Dispositivos
+            var tienePermiso = await RequestBluetoothPermissionsAsync();
+
+            if (tienePermiso)
+            {
+                // Navegación a la página de dispositivos Bluetooth
+                await _navigationService.NavigateToPage("BluetoothDevicesPage");
+            }
+            else
+            {
+                // Informar al usuario que necesita otorgar permisos
+                // Puedes usar un DisplayAlert o algún otro mecanismo para mostrar un mensaje al usuario
+            }
+        }
+
+        private async Task<bool> RequestBluetoothPermissionsAsync()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
+
+            return status == PermissionStatus.Granted;
         }
     }
 }

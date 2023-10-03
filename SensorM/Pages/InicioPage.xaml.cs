@@ -7,16 +7,19 @@ using UraniumUI.Pages;
 
 namespace SensorM.Pages
 {
-    public partial class InicioPage : UraniumContentPage
+    public partial class InicioPage : ContentPage
     {
         private readonly IThemeService _themeService;
         private readonly InicioViewModel _viewModel;
+        private readonly INavigationService _navigationService; // Inyectado para gestionar la navegación
 
-        public InicioPage(IThemeService themeService, InicioViewModel viewModel)
+
+        public InicioPage(IThemeService themeService, InicioViewModel viewModel, INavigationService navigationService)
         {
             // Asegurándonos de que las dependencias se inyectaron correctamente
             _themeService = themeService ?? throw new ArgumentNullException(nameof(themeService));
             _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
             InitializeComponent();
 
@@ -28,18 +31,5 @@ namespace SensorM.Pages
             _themeService.SetTheme(e.Value ? Theme.Dark : Theme.Light);
         }
 
-        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Verifica si hay algún elemento seleccionado
-            if (e.CurrentSelection.Count > 0)
-            {
-                // Obtén el primer elemento seleccionado y verifica si es un Dispositivo
-                if (e.CurrentSelection[0] is Dispositivo dispositivoSeleccionado)
-                {
-                    // Haz algo con el dispositivo seleccionado
-                    // Por ejemplo, navegar a una nueva página que muestra detalles sobre el dispositivo
-                }
-            }
-        }
     }
 }

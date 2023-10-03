@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SensorM.Pages.BluetoothDevicesPage">
+
+    <StackLayout Padding="20">
+        <Label Text="Dispositivos Bluetooth Disponibles"
+               FontAttributes="Bold"
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <Button Text="Buscar Dispositivos"
+                Command="{Binding BuscarDispositivosCommand}"
+                HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding Dispositivos}"
+                  SelectedItem="{Binding SelectedDevice}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Conectar"
+                Command="{Binding ConectarCommand}"
+                HorizontalOptions="Center" />
+
+        <Label Text="{Binding StatusMessage}"
+               HorizontalOptions="Center"
+               TextColor="Red" />
+    </StackLayout>
+</ContentPage>

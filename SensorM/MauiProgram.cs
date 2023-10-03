@@ -28,11 +28,25 @@ namespace SensorM
             // Registro de servicios de la biblioteca de clases
             builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
 
-            builder.Logging.AddDebug();
+            #if __ANDROID__
+            // Registro de IBluetoothService para Android
+            builder.Services.AddTransient<IBluetoothService, SensorM.Platforms.Android.AndroidBluetoothService>();
+            #endif
+
+            // Registro de INavigationService
+            builder.Services.AddTransient<INavigationService>(provider =>
+            {
+                var mainPage = provider.GetRequiredService<MainPage>();
+                var bluetoothService = provider.GetRequiredService<IBluetoothService>();
+                return new NavigationService(mainPage, bluetoothService);
+            });
+
 
             builder.Services.AddSingleton<IThemeService, ThemeService>();
             builder.Services.AddTransient<InicioViewModel>();
+            builder.Services.AddTransient<MainPage>();
 
+            builder.Logging.AddDebug();
 
             return builder.Build();
         }

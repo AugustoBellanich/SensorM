@@ -3,6 +3,8 @@ using Android.Content;
 using SensorM.Interfaces;
 using Java.Util;
 using System.Text;
+using SensorM.Platforms.Android;
+
 
 namespace SensorM.Platforms.Android
 {
@@ -65,7 +67,7 @@ namespace SensorM.Platforms.Android
 
         public async Task EnviarDatosAsync(string data)
         {
-            if (_outputStream == null)
+            if (_outputStream == null || !_socket.IsConnected)
             {
                 throw new InvalidOperationException("No está conectado a un dispositivo Bluetooth");
             }
@@ -76,7 +78,7 @@ namespace SensorM.Platforms.Android
 
         public async Task<string> RecibirDatosAsync()
         {
-            if (_inputStream == null)
+            if (_inputStream == null || !_socket.IsConnected)
             {
                 throw new InvalidOperationException("No está conectado a un dispositivo Bluetooth");
             }
@@ -84,6 +86,14 @@ namespace SensorM.Platforms.Android
             byte[] buffer = new byte[1024];
             int bytesRead = await _inputStream.ReadAsync(buffer, 0, buffer.Length);
             return Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        }
+
+        public Task DesconectarAsync()
+        {
+            _inputStream?.Close();
+            _outputStream?.Close();
+            _socket?.Close();
+            return Task.CompletedTask;
         }
     }
 }
