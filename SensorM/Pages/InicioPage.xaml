@@ -2,6 +2,8 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:SensorM.ViewModels"
+    x:DataType="viewModels:InicioViewModel"
     x:Class="SensorM.Pages.InicioPage">
 
     <Grid>
@@ -21,13 +23,13 @@
             </Grid.ColumnDefinitions>
 
             <!-- Botón de Navegación Lateral -->
-            <Button Text="Menu" Grid.Column="0" Command="{Binding NavCommand}"/>
+            <Button Text="Menu" Grid.Column="0" Command="{Binding NavigateToTestCommand}"/>
 
             <!-- Logo del Centro -->
             <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="50" Margin="10"/>
 
             <!-- Botón de conexión bluetooth -->
-            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding BluetoothCommand}"/>
+            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding NavigateToBluetoothDevicesPage}"/>
             
         </Grid>
 

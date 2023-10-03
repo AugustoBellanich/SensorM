@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SensorM.Interfaces;
+using SensorM.Pages;
 using SensorM.Services;
 using SensorM.ViewModels;
 using SQLiteDatabase.Interfaces;
@@ -22,6 +23,10 @@ namespace SensorM
                     fonts.AddMaterialIconFonts();
                 });
 
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
+
             builder.UseUraniumUI();
             builder.UseUraniumUIMaterial();
 
@@ -33,20 +38,29 @@ namespace SensorM
             builder.Services.AddTransient<IBluetoothService, SensorM.Platforms.Android.AndroidBluetoothService>();
             #endif
 
+            //#if WINDOWS
+            //// Registro de IBluetoothService para windows
+            //builder.Services.AddTransient<IBluetoothService, SensorM.Platforms.Windows.WindowsBluetoothService>();
+            //#endif
+
             // Registro de INavigationService
-            builder.Services.AddTransient<INavigationService>(provider =>
-            {
-                var mainPage = provider.GetRequiredService<MainPage>();
-                var bluetoothService = provider.GetRequiredService<IBluetoothService>();
-                return new NavigationService(mainPage, bluetoothService);
-            });
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
 
-
+            // Registro de IThemeService
             builder.Services.AddSingleton<IThemeService, ThemeService>();
-            builder.Services.AddTransient<InicioViewModel>();
-            builder.Services.AddTransient<MainPage>();
 
-            builder.Logging.AddDebug();
+            //Registro de ViewModel
+            builder.Services.AddSingleton<InicioViewModel>();
+            builder.Services.AddTransient<BluetoothDevicesViewModel>();
+          
+            
+
+            // Registro de Page
+            builder.Services.AddSingleton<InicioPage>();
+            builder.Services.AddTransient<BluetoothDevicesPage>();
+
+            builder.Services.AddTransient<TestPage>();
+
 
             return builder.Build();
         }

@@ -8,7 +8,6 @@ namespace SensorM.Interfaces
 {
     public interface INavigationService
     {
-        Task NavigateToPage(string pageName, object parameter = null);
-        Task NavigateBack();
+        Task NavigateToASync(string route, IDictionary<string, object> parameters=null);
     }
 }

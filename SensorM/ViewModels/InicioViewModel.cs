@@ -13,19 +13,28 @@ namespace SensorM.ViewModels
         private readonly IThemeService _themeService;
         private bool _isDarkMode;
 
-        private readonly INavigationService _navigationService; // Agregado para gestionar la navegación
 
-        public ICommand BluetoothCommand { get; }
         public ObservableCollection<Dispositivo> Dispositivos { get; } = new ObservableCollection<Dispositivo>();
 
-        public InicioViewModel(IThemeService themeService, INavigationService navigationService)
+        public InicioViewModel(IThemeService themeService, INavigationService navigationService) : base(navigationService)
         {
             _themeService = themeService;
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
             IsDarkMode = _themeService.CurrentTheme == Theme.Dark;
-            BluetoothCommand = new Command(async () => await OnBluetoothPressed());
         }
+
+
+        public void NavigateToBluetoothDevicesPage()
+        {
+            NavigationService.NavigateToASync(nameof(BluetoothDevicesPage));
+        }
+
+
+
+
+
+
+            
 
         public bool IsDarkMode
         {
@@ -36,21 +45,7 @@ namespace SensorM.ViewModels
             }
         }
 
-        private async Task OnBluetoothPressed()
-        {
-            var tienePermiso = await RequestBluetoothPermissionsAsync();
-
-            if (tienePermiso)
-            {
-                // Navegación a la página de dispositivos Bluetooth
-                await _navigationService.NavigateToPage("BluetoothDevicesPage");
-            }
-            else
-            {
-                // Informar al usuario que necesita otorgar permisos
-                // Puedes usar un DisplayAlert o algún otro mecanismo para mostrar un mensaje al usuario
-            }
-        }
+        
 
         private async Task<bool> RequestBluetoothPermissionsAsync()
         {

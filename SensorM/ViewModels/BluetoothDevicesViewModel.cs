@@ -16,7 +16,7 @@ namespace SensorM.ViewModels
         private string _selectedDevice;
         private string _statusMessage;
 
-        public BluetoothDevicesViewModel(IBluetoothService bluetoothService)
+        public BluetoothDevicesViewModel(IBluetoothService bluetoothService, INavigationService navigationService): base(navigationService)
         {
             _bluetoothService = bluetoothService ?? throw new ArgumentNullException(nameof(bluetoothService));
             BuscarDispositivosCommand = new Command(async () => await BuscarDispositivos());

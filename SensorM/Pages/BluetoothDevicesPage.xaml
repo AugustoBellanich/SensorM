@@ -17,7 +17,7 @@
                   SelectedItem="{Binding SelectedDevice}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding}" />
+                    <TextCell Text="Algo" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

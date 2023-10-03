@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using SensorM.Interfaces;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace SensorM.ViewModels
@@ -23,6 +24,14 @@ namespace SensorM.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        protected readonly INavigationService _navigationService; // Agregado para gestionar la navegación
+
+        public BaseViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         }
     }
 }
