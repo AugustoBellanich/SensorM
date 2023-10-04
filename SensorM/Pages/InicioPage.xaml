@@ -23,13 +23,13 @@
             </Grid.ColumnDefinitions>
 
             <!-- Botón de Navegación Lateral -->
-            <Button Text="Menu" Grid.Column="0" Command="{Binding NavigateToTestCommand}"/>
+            <Button Text="Menu" Grid.Column="0" Command="{Binding NavigateToTestPageCommand}"/>
 
             <!-- Logo del Centro -->
             <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="50" Margin="10"/>
 
             <!-- Botón de conexión bluetooth -->
-            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding NavigateToBluetoothDevicesPage}"/>
+            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding NavigateToBluetoothDevicesPageCommand}"/>
             
         </Grid>
 

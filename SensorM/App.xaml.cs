@@ -10,12 +10,9 @@ namespace SensorM
 {
     public partial class App : Application
     {
-        public App(IThemeService themeService, InicioViewModel inicioViewModel, INavigationService navigationService)
+        public App()
         {
-            InitializeComponent();
-
-            var inicioPage = new InicioPage(themeService, inicioViewModel, navigationService);
-            MainPage = new NavigationPage(inicioPage);
+            MainPage = new AppShell();  // Establece la página principal de la aplicación
         }
 
 

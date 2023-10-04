@@ -26,6 +26,9 @@ namespace SensorM
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            // Registro de INavigationService
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
+
 
             builder.UseUraniumUI();
             builder.UseUraniumUIMaterial();
@@ -43,16 +46,13 @@ namespace SensorM
             //builder.Services.AddTransient<IBluetoothService, SensorM.Platforms.Windows.WindowsBluetoothService>();
             //#endif
 
-            // Registro de INavigationService
-            builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             // Registro de IThemeService
             builder.Services.AddSingleton<IThemeService, ThemeService>();
 
             //Registro de ViewModel
             builder.Services.AddSingleton<InicioViewModel>();
-            builder.Services.AddTransient<BluetoothDevicesViewModel>();
-          
+            builder.Services.AddTransient<BluetoothDevicesViewModel>();  // Transient para que se cree una nueva instancia cada vez que se solicite
             
 
             // Registro de Page

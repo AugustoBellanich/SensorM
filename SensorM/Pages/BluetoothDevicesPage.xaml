@@ -10,21 +10,22 @@
                HorizontalOptions="Center" />
 
         <Button Text="Buscar Dispositivos"
-                Command="{Binding BuscarDispositivosCommand}"
-                HorizontalOptions="Center" />
+            Command="{Binding BuscarDispositivosCommand}"
+            HorizontalOptions="Center" />
 
         <ListView ItemsSource="{Binding Dispositivos}"
-                  SelectedItem="{Binding SelectedDevice}">
+          SelectedItem="{Binding SelectedDevice}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="Algo" />
+                    <TextCell Text="{Binding .}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
+
         <Button Text="Conectar"
-                Command="{Binding ConectarCommand}"
-                HorizontalOptions="Center" />
+            Command="{Binding ConectarCommand}"
+            HorizontalOptions="Center" />
 
         <Label Text="{Binding StatusMessage}"
                HorizontalOptions="Center"

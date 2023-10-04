@@ -1,30 +1,23 @@
 ﻿using SensorM.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace SensorM.ViewModels
 {
-    public class BluetoothDevicesViewModel : BaseViewModel
+    public partial class BluetoothDevicesViewModel : ObservableObject
     {
         private readonly IBluetoothService _bluetoothService;
         private ObservableCollection<string> _dispositivos;
         private string _selectedDevice;
         private string _statusMessage;
+        private bool _isBusy;
 
-        public BluetoothDevicesViewModel(IBluetoothService bluetoothService, INavigationService navigationService): base(navigationService)
+        public BluetoothDevicesViewModel(IBluetoothService bluetoothService)
         {
             _bluetoothService = bluetoothService ?? throw new ArgumentNullException(nameof(bluetoothService));
-            BuscarDispositivosCommand = new Command(async () => await BuscarDispositivos());
-            ConectarCommand = new Command(async () => await Conectar());
         }
-
-        public ICommand BuscarDispositivosCommand { get; }
-        public ICommand ConectarCommand { get; }
 
         public ObservableCollection<string> Dispositivos
         {
@@ -44,15 +37,14 @@ namespace SensorM.ViewModels
             set => SetProperty(ref _statusMessage, value);
         }
 
-        private bool _isBusy;
-
         public bool IsBusy
         {
             get => _isBusy;
             set => SetProperty(ref _isBusy, value);
         }
 
-        private async Task BuscarDispositivos()
+        [RelayCommand]
+        public async Task BuscarDispositivos()
         {
             try
             {
@@ -71,7 +63,8 @@ namespace SensorM.ViewModels
             }
         }
 
-        private async Task Conectar()
+        [RelayCommand]
+        public async Task Conectar()
         {
             if (string.IsNullOrEmpty(SelectedDevice))
             {
@@ -95,5 +88,4 @@ namespace SensorM.ViewModels
             }
         }
     }
-
 }

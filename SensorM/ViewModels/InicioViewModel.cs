@@ -5,10 +5,11 @@ using SensorM.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using SensorM.Pages;
+using CommunityToolkit.Mvvm.Input;
 
 namespace SensorM.ViewModels
 {
-    public class InicioViewModel : BaseViewModel
+    public partial class InicioViewModel : BaseViewModel
     {
         private readonly IThemeService _themeService;
         private bool _isDarkMode;
@@ -23,18 +24,17 @@ namespace SensorM.ViewModels
             IsDarkMode = _themeService.CurrentTheme == Theme.Dark;
         }
 
-
+        [RelayCommand]
         public void NavigateToBluetoothDevicesPage()
         {
-            NavigationService.NavigateToASync(nameof(BluetoothDevicesPage));
+            _navigationService.NavigateToAsync(nameof(BluetoothDevicesPage));
         }
 
-
-
-
-
-
-            
+        [RelayCommand]
+        public void NavigateToTestPage()
+        {
+            _navigationService.NavigateToAsync(nameof(TestPage));
+        }
 
         public bool IsDarkMode
         {

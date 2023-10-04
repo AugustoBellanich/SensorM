@@ -9,7 +9,7 @@ namespace SensorM.Services
 {
     public class NavigationService : INavigationService
     {
-        public Task NavigateToASync(string route, IDictionary<string, object> parameters)
+        public Task NavigateToAsync(string route, IDictionary<string, object> parameters)
         {
             if(parameters != null)
             {
