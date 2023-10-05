@@ -85,6 +85,11 @@ namespace SensorM.ViewModels
             finally
             {
                 IsBusy = false;
+
+                if (_bluetoothService.IsConnected)
+                {
+                    await Shell.Current.Navigation.PopAsync();
+                }
             }
         }
     }

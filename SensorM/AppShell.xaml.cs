@@ -9,7 +9,7 @@ namespace SensorM
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(BluetoothDevicesPage), typeof(BluetoothDevicesPage));  // Registramos la ruta de la página BluetoothDevicesPage
-            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));  // Registramos la ruta de la página TestPage
+            Routing.RegisterRoute(nameof(SensorB01Page), typeof(SensorB01Page));  // Registramos la ruta de la página SensorB01Page
         }
     }
 }

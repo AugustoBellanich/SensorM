@@ -7,7 +7,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
+        Title="SENSOR"
         ContentTemplate="{DataTemplate local:InicioPage}"
         Route="InicioPage" />
 

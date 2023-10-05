@@ -19,6 +19,16 @@ namespace SensorM.Interfaces
 
         // Recibir datos del dispositivo
         Task<string> RecibirDatosAsync();
+
+        Task DesconectarAsync();  // Desconectar del dispositivo
+
+
+
+
+        bool IsConnected { get; }  // Propiedad para verificar si el dispositivo está conectado
+        string ConnectedDeviceName { get; }  // Propiedad para obtener el nombre del dispositivo conectado
+
+
     }
 
 }

@@ -7,6 +7,6 @@ namespace SensorM.Interfaces
         Theme CurrentTheme { get; }
         void SetLightTheme();
         void SetDarkTheme();
-        void SetTheme(Theme theme);
+        void SetTheme(Theme Apptheme);
     }
 }

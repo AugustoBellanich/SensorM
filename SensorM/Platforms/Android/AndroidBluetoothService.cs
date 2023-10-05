@@ -16,6 +16,16 @@ namespace SensorM.Platforms.Android
         private Stream _inputStream;
         private Stream _outputStream;
 
+
+
+        private string _connectedDeviceName;
+
+        public bool IsConnected => _socket?.IsConnected ?? false;
+
+        public string ConnectedDeviceName => _connectedDeviceName;
+
+
+
         public async Task<IEnumerable<string>> BuscarDispositivosAsync()
         {
             // Obtener el adaptador Bluetooth predeterminado
@@ -57,23 +67,52 @@ namespace SensorM.Platforms.Android
             }
 
             _socket = device.CreateRfcommSocketToServiceRecord(MY_UUID);
+
             await _socket.ConnectAsync();
 
             _inputStream = _socket.InputStream;
             _outputStream = _socket.OutputStream;
 
-            return _socket.IsConnected;
-        }
-
-        public async Task EnviarDatosAsync(string data)
-        {
-            if (_outputStream == null || !_socket.IsConnected)
+            if(_socket.IsConnected)
             {
-                throw new InvalidOperationException("No está conectado a un dispositivo Bluetooth");
+                _connectedDeviceName = deviceName;  // Guardamos el nombre del dispositivo conectado
+
             }
 
-            byte[] buffer = Encoding.UTF8.GetBytes(data);
-            await _outputStream.WriteAsync(buffer, 0, buffer.Length);
+            return _socket.IsConnected;
+
+        }
+
+
+
+        public async Task EnviarDatosAsync(string comando)
+        {
+            try
+            {
+                if (_outputStream == null || !_socket.IsConnected)
+                {
+                    throw new InvalidOperationException("No está conectado a un dispositivo Bluetooth");
+                }
+
+                // Asegurarte de que el comando termina con '\n'
+                if (!comando.EndsWith("\n"))
+                {
+                    comando += "\n";
+                }
+
+                // Convertir la cadena a bytes
+                byte[] buffer = Encoding.UTF8.GetBytes(comando);
+
+                await _outputStream.WriteAsync(buffer, 0, buffer.Length);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error al enviar datos al dispositivo Bluetooth", ex);
+            }
+
+           
         }
 
         public async Task<string> RecibirDatosAsync()
@@ -93,6 +132,9 @@ namespace SensorM.Platforms.Android
             _inputStream?.Close();
             _outputStream?.Close();
             _socket?.Close();
+
+            _connectedDeviceName = null;  // Limpiamos el nombre del dispositivo al desconectar
+
             return Task.CompletedTask;
         }
     }

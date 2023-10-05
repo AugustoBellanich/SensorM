@@ -1,38 +1,131 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:SensorM.ViewModels"
-    x:DataType="viewModels:InicioViewModel"
-    x:Class="SensorM.Pages.InicioPage">
+<uranium:UraniumContentPage x:Class="SensorM.Pages.InicioPage"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:viewModels="clr-namespace:SensorM.ViewModels"
+            xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+            xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+            xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+            x:DataType="viewModels:InicioViewModel">
+   
 
-    <Grid>
+        <Grid BackgroundColor="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Barra Superior -->
-        <Grid Grid.Row="0" Padding="10">
-            
+
+
+        <Grid Grid.Row="0" BackgroundColor="Black">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Botón de Navegación Lateral -->
-            <Button Text="Menu" Grid.Column="0" Command="{Binding NavigateToTestPageCommand}"/>
-
-            <!-- Logo del Centro -->
-            <Image Grid.Column="1" Source="logo_sensor.png" Aspect="AspectFit" HeightRequest="50" Margin="10"/>
-
-            <!-- Botón de conexión bluetooth -->
-            <Button Text="Bluetooth" Grid.Column="2" Command="{Binding NavigateToBluetoothDevicesPageCommand}"/>
-            
+            <!-- Botones con iconos -->
+            <Button Grid.Column="0" CornerRadius="0" StyleClass="OutlinedButton" ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Sensors}, FontFamily=MaterialRegular, Color=White}" BackgroundColor="#1b3148"/>
+            <Button Grid.Column="1" CornerRadius="0" StyleClass="OutlinedButton" ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Storage}, FontFamily=MaterialRegular, Color=White}" BackgroundColor="#1b3148"/>
+            <Button Grid.Column="2" CornerRadius="0" StyleClass="OutlinedButton" ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Query_stats}, FontFamily=MaterialRegular, Color=White}" BackgroundColor="#1b3148"/>
+            <Button Grid.Column="3" CornerRadius="0" StyleClass="OutlinedButton" Command="{Binding NavigateToBluetoothDevicesPageCommand}" ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Bluetooth_searching}, FontFamily=MaterialRegular, Color=White}" BackgroundColor="#1b3148"/>
+            <Button Grid.Column="4" CornerRadius="0" StyleClass="OutlinedButton" ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Settings}, FontFamily=MaterialRegular, Color=White}" BackgroundColor="#1b3148"/>
         </Grid>
 
+
+
+        <!-- Contenido de la página -->
+        <Grid Grid.Row="1" Padding="16,10,16,5" Margin="0,0,0,0" HeightRequest="150">
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="white" IsVisible="{Binding IsConnected}">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="10">
+                    <!-- Título y Nombre del Dispositivo en la misma línea -->
+                    <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Dispositivo Conectado:" 
+                       FontSize="Large" 
+                       TextColor="DimGrey" 
+                       VerticalOptions="Center"/>
+                        <Label Text="{Binding ConnectedDeviceName}"  
+                       FontSize="Large" 
+                       TextColor="Black" 
+                       VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!-- Botones en la esquina inferior derecha -->
+                    <StackLayout HorizontalOptions="Center" 
+                         VerticalOptions="Center" 
+                         Orientation="Horizontal" 
+                         Spacing="10" 
+                         Padding="10">
+                        <!-- Botón para Desconectar -->
+                        <Button BackgroundColor="Transparent"
+                        Command="{Binding DisconnectBluetoothCommand}"
+                        CornerRadius="30"
+                        IsVisible="{Binding IsConnected}"
+                        ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Power_settings_new}, FontFamily=MaterialRegular, Color=Red}"/>
+
+                        <!-- Botón para Guardar -->
+                        <Button BackgroundColor="Transparent"
+                        CornerRadius="30"
+                        IsVisible="{Binding IsConnected}"
+                        ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Save}, FontFamily=MaterialRegular, Color=DodgerBlue}"/>
+
+                        <!-- Botón para Información -->
+                        <Button BackgroundColor="Transparent"
+                        CornerRadius="30"
+                        IsVisible="{Binding IsConnected}"
+                        ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Info}, FontFamily=MaterialRegular, Color=DodgerBlue}"/>
+
+                        <!-- Botón para Lectura de datos -->
+                        <Button BackgroundColor="Transparent"
+                        Command="{Binding NavigationSensorB01PageCommand}"
+                        CornerRadius="30"
+                        IsVisible="{Binding IsConnected}"
+                        ImageSource="{FontImageSource Glyph={x:Static m:MaterialRegular.Straighten}, FontFamily=MaterialRegular, Color=DodgerBlue}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+
+
+        <!-- Barra inferior -->
+        <StackLayout Grid.Row="4" Margin="0,0,0,0" Padding="20" BackgroundColor="#1b3148">
+            <Image Grid.Column="1" Source="logo_inta_sensor2.png" Aspect="AspectFit" HeightRequest="150"/>
+        </StackLayout>
+
     </Grid>
-    
-</ContentPage>
+
+    <uranium:UraniumContentPage.Attachments>
+        <material:BackdropView x:Name="miBackdrop" Title="Menú" BackgroundColor="#1b3148" >
+            <material:BackdropView.IconImageSource>
+                <FontImageSource FontFamily="MaterialRound" Glyph="{x:Static m:MaterialRound.Menu}" Color="White" />
+            </material:BackdropView.IconImageSource>
+            <material:BackdropView.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Button" ApplyToDerivedTypes="True">
+                        <Setter Property="TextColor" Value="White" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="BackgroundColor" Value="#1b3148"/>
+                    </Style>
+                </ResourceDictionary>
+            </material:BackdropView.Resources>
+
+            <StackLayout Padding="10" Spacing="10">
+                <!-- Elementos del menú aquí -->
+                <Button Text="Dispositivos" />
+                <Button Text="Base de datos" />
+                <Button Text="Calibración" />
+                <Button Text="Conectar por Bluetooth" Command="{Binding NavigateToBluetoothDevicesPageCommand}"/>
+                <Button Text="Configuración" />
+                <!-- ... -->
+            </StackLayout>
+        </material:BackdropView>
+    </uranium:UraniumContentPage.Attachments>
+
+
+</uranium:UraniumContentPage>

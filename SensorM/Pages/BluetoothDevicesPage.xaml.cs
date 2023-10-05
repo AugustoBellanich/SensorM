@@ -1,10 +1,11 @@
 using Microsoft.Maui.Controls;
 using SensorM.ViewModels;
 using System;
+using UraniumUI.Pages;
 
 namespace SensorM.Pages
 {
-    public partial class BluetoothDevicesPage : ContentPage
+    public partial class BluetoothDevicesPage : UraniumContentPage
     {
         private readonly BluetoothDevicesViewModel _viewModel;
 

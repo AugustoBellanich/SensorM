@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<uranium:UraniumContentPage x:Class="SensorM.Pages.BluetoothDevicesPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SensorM.Pages.BluetoothDevicesPage">
+                        xmlns:viewModels="clr-namespace:SensorM.ViewModels"
+           xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+           xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+           xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+           x:DataType="viewModels:BluetoothDevicesViewModel"
+                            Title="Dispositivos Bluetooth">
 
-    <StackLayout Padding="20">
-        <Label Text="Dispositivos Bluetooth Disponibles"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center" />
+    <StackLayout Padding="20" BackgroundColor="WhiteSmoke">
 
-        <Button Text="Buscar Dispositivos"
-            Command="{Binding BuscarDispositivosCommand}"
+
+        <Button Text="Buscar Dispositivos" Margin="20"  TextColor="White" HeightRequest="60" WidthRequest="250" FontSize="Medium"
+            Command="{Binding BuscarDispositivosCommand}" BackgroundColor="DodgerBlue"
             HorizontalOptions="Center" />
 
-        <ListView ItemsSource="{Binding Dispositivos}"
-          SelectedItem="{Binding SelectedDevice}">
+        <ListView ItemsSource="{Binding Dispositivos}" 
+          SelectedItem="{Binding SelectedDevice}" Margin="0,10,0,30">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding .}" />
+                    <TextCell Text="{Binding .}" TextColor="#1b3148"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
 
-        <Button Text="Conectar"
-            Command="{Binding ConectarCommand}"
+        <Button Text="Conectar" Margin="10" TextColor="White" FontSize="Large" BackgroundColor="DodgerBlue"
+            Command="{Binding ConectarCommand}" HeightRequest="60" WidthRequest="150"
             HorizontalOptions="Center" />
 
         <Label Text="{Binding StatusMessage}"
-               HorizontalOptions="Center"
-               TextColor="Red" />
+               HorizontalOptions="Center" FontSize="Medium"
+               TextColor="Red" Margin="10"/>
+        
+        
     </StackLayout>
-</ContentPage>
+</uranium:UraniumContentPage>

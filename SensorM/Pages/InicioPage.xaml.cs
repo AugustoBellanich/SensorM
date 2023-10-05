@@ -7,7 +7,7 @@ using UraniumUI.Pages;
 
 namespace SensorM.Pages
 {
-    public partial class InicioPage : ContentPage
+    public partial class InicioPage : UraniumContentPage
     {
         private readonly IThemeService _themeService;
         private readonly InicioViewModel _viewModel;
@@ -26,9 +26,10 @@ namespace SensorM.Pages
             BindingContext = _viewModel;
         }
 
-        private void OnThemeToggled(object sender, ToggledEventArgs e)
+        protected override void OnAppearing()
         {
-            _themeService.SetTheme(e.Value ? Theme.Dark : Theme.Light);
+            base.OnAppearing();
+            (_viewModel as InicioViewModel)?.UpdateBluetoothStatus();
         }
 
     }

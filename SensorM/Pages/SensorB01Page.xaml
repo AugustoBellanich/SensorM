@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uranium:UraniumContentPage x:Class="SensorM.Pages.SensorB01Page"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:viewModels="clr-namespace:SensorM.ViewModels"
+            xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+            xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+            xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+            xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+            x:DataType="viewModels:SensorB01ViewModel"
+            Title="SENSOR B01">
+
+    <Grid RowDefinitions="*,*,*,*" Padding="20" BackgroundColor="WhiteSmoke">
+
+        <!-- Sensor 1 -->
+        <Frame Grid.Row="0" BackgroundColor="White" Margin="20">
+            <Grid ColumnDefinitions="*,*">
+                <Label Grid.Column="1" Text="Sensor 1" TextColor="Black" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <lvc:PieChart Grid.Column="0" Series="{Binding Humedad1Series}" InitialRotation="-90" MinValue="0" MaxValue="100" HeightRequest="200" />
+                <Label Grid.Column="1" TextColor="Black" Text="{Binding Data.Capacitancia1, StringFormat='Cap: {0:F0}'}" VerticalOptions="Center" FontSize="Medium" HorizontalOptions="Center" Margin="0,50,0,0"/>
+            </Grid>
+        </Frame>
+
+        <!-- Sensor 2 -->
+        <Frame Grid.Row="1" BackgroundColor="White" Margin="20">
+            <Grid ColumnDefinitions="*,*">
+                <Label  Grid.Column="1" Text="Sensor 2" TextColor="Black" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <lvc:PieChart Grid.Column="0" Series="{Binding Humedad2Series}" InitialRotation="-90" MinValue="0" MaxValue="100" HeightRequest="200" />
+                <Label Grid.Column="1" TextColor="Black" Text="{Binding Data.Capacitancia2, StringFormat='Cap: {0:F0}'}" VerticalOptions="Center" FontSize="Medium" HorizontalOptions="Center" Margin="0,50,0,0"/>
+            </Grid>
+        </Frame>
+
+        <!-- Sensor 3 -->
+        <Frame Grid.Row="2" BackgroundColor="White" Margin="20">
+            <Grid ColumnDefinitions="*,*">
+                <Label  Grid.Column="1" Text="Sensor 3" TextColor="Black" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0"/>
+                <lvc:PieChart Grid.Column="0" Series="{Binding Humedad3Series}" InitialRotation="-90" MinValue="0" MaxValue="100" HeightRequest="200" />
+                <Label Grid.Column="1" TextColor="Black" Text="{Binding Data.Capacitancia3, StringFormat='Cap: {0:F0}'}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium" Margin="0,50,0,0"/>
+            </Grid>
+        </Frame>
+
+        <!-- Temperatura -->
+        <Frame Grid.Row="3" BackgroundColor="White" Margin="20">
+            <StackLayout>
+                <Label Text="Temperatura" TextColor="Black" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <Label Text="{Binding Data.Temperatura, StringFormat='{0:F1} °C'}" TextColor="Black" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </Frame>
+
+    </Grid>
+</uranium:UraniumContentPage>
